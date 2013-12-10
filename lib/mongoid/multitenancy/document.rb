@@ -50,7 +50,7 @@ module Mongoid
 
         # Redefine 'validates_with' to add the tenant scope when using a UniquenessValidator
         def validates_with(*args, &block)
-          if args.first == ActiveRecord::Validations::UniquenessValidator
+          if args.first == Validations::UniquenessValidator
             args.last[:scope] = Array(args.last[:scope]) << self.tenant_field
           end
           super(*args, &block)
